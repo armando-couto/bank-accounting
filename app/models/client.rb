@@ -6,10 +6,7 @@ class Client < ApplicationRecord
   validates :password, length: {minimum: 6}, if: -> {new_record? || !password.nil?}
 
   def create_account
-    puts "CPF: " + self.cpf
-
     cpf = self.cpf
-
     ActiveRecord::Schema.define do
       create_table "account_" + cpf, force: :cascade do |t|
         t.string "number"
