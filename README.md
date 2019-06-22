@@ -23,7 +23,16 @@ O JWT é um meio de transmitir informações seguras.
 
 | URL | MÉTODO | RETORNO |
 | --- | ------ | ------- |
+| /api/v1/auth | POST | Retorno JSON |
 
+Exemplo de retorno de json:
+```json
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE1NjEyOTY3MjB9.JzmIozEt56ASNeLwwiEJhcMhAmidBX-V5xDDSW7SIzI",
+    "exp": "06-23-2019 10:32",
+    "name": "Carmelia Blanda"
+}
+```
 
 ### Documantacao da API
 
