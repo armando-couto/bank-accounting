@@ -1,4 +1,4 @@
-puts "Criando Usuários"
+puts "Populando com dados"
 
 50.times do
   User.create({
@@ -6,4 +6,9 @@ puts "Criando Usuários"
                   email: Faker::Internet.email,
                   password: "123456"
               })
+
+  Account.create({
+                     number: Faker::Bank.account_number,
+                     name: Faker::Bank.name,
+                 })
 end
