@@ -1256,3 +1256,29 @@ Processing by ApplicationController#not_found as
 Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/apipie" for 127.0.0.1 at 2019-06-21 23:42:10 -0300
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/armando/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by ApplicationController#not_found as HTML
+  Parameters: {"a"=>"apipie"}
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2019-06-21 23:42:11 -0300
+Processing by ApplicationController#not_found as 
+  Parameters: {"a"=>"favicon"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/apipie.json" for 127.0.0.1 at 2019-06-21 23:42:27 -0300
+Processing by ApplicationController#not_found as JSON
+  Parameters: {"a"=>"apipie"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2019-06-21 23:42:27 -0300
+Processing by ApplicationController#not_found as 
+  Parameters: {"a"=>"favicon"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
