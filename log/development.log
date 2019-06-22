@@ -1331,3 +1331,21 @@ Migrating to RemoveUserUsername (20190622103242)
   ↳ /Users/armando/.rvm/gems/ruby-2.5.1/bin/rake:23
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/armando/.rvm/gems/ruby-2.5.1/bin/rake:23
+Started POST "/auth/login" for 127.0.0.1 at 2019-06-22 09:16:43 -0300
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/armando/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"lazarogutmann@ziemannkunde.co", "password"=>"[FILTERED]", "authentication"=>{"email"=>"lazarogutmann@ziemannkunde.co", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lazarogutmann@ziemannkunde.co"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6
+Completed 200 OK in 95ms (Views: 0.2ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2019-06-22 10:03:10 -0300
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"lazarogutmann@ziemannkunde.co", "password"=>"[FILTERED]", "authentication"=>{"email"=>"lazarogutmann@ziemannkunde.co", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lazarogutmann@ziemannkunde.co"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6
+Completed 200 OK in 68ms (Views: 1.3ms | ActiveRecord: 0.9ms)
+
+
