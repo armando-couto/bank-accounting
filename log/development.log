@@ -1349,3 +1349,29 @@ Processing by AuthenticationController#login as */*
 Completed 200 OK in 68ms (Views: 1.3ms | ActiveRecord: 0.9ms)
 
 
+Started GET "/qerywyeur" for 127.0.0.1 at 2019-06-22 10:09:36 -0300
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/armando/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by ApplicationController#not_found as HTML
+  Parameters: {"a"=>"qerywyeur"}
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2019-06-22 10:09:36 -0300
+Processing by ApplicationController#not_found as 
+  Parameters: {"a"=>"favicon"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sdfsdf" for 127.0.0.1 at 2019-06-22 10:09:39 -0300
+Processing by ApplicationController#not_found as HTML
+  Parameters: {"a"=>"sdfsdf"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2019-06-22 10:09:39 -0300
+Processing by ApplicationController#not_found as 
+  Parameters: {"a"=>"favicon"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
