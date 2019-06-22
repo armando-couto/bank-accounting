@@ -4,11 +4,11 @@ module Api::V1
 
     # POST /auth
     def login
-      @user = User.find_by_email(params[:email])
-      if @user&.authenticate(params[:password])
-        token = JsonWebToken.encode(user_id: @user.id)
+      @client = Client.find_by_email(params[:email])
+      if @client&.authenticate(params[:password])
+        token = JsonWebToken.encode(client_id: @client.id)
         time = Time.now + 24.hours.to_i
-        render json: {token: token, exp: time.strftime("%m-%d-%Y %H:%M"), name: @user.name}, status: :ok
+        render json: {token: token, exp: time.strftime("%m-%d-%Y %H:%M"), name: @client.name}, status: :ok
       else
         render json: {error: 'unauthorized'}, status: :unauthorized
       end

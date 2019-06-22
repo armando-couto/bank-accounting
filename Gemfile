@@ -19,6 +19,7 @@ gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker'
+gem 'cpf_faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
