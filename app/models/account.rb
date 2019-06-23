@@ -3,6 +3,12 @@ class Account < ApplicationRecord
   before_create :create_historic
   validates :number, presence: true, uniqueness: true
 
+  def self.historics account_number
+
+  end
+
+  private
+
   def create_historic
     number = self.number
     ActiveRecord::Schema.define do

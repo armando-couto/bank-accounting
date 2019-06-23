@@ -18,6 +18,9 @@ gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# https://github.com/jenseng/hair_trigger
+gem 'hairtrigger'
+
 gem 'faker'
 gem 'cpf_faker'
 
