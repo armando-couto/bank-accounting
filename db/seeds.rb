@@ -15,3 +15,9 @@ puts "Populando o banco de dados"
                      balance: Faker::Number.decimal,
                  })
 end
+
+100000.times do
+
+
+
+end

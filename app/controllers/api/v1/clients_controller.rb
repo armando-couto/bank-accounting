@@ -6,6 +6,13 @@ module Api::V1
     # GET /clients
     def index
       @clients = Client.all
+
+      Moviment.table_name = "moviment_1564890332"
+      puts Moviment.count
+
+      Moviment.table_name = "moviment_9600295491"
+      puts Moviment.count
+
       render json: @clients, status: :ok
     end
 
