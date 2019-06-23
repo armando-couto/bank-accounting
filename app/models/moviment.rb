@@ -1,3 +1,9 @@
 class Moviment < ApplicationRecord
-  enum type: {deposit: "DEPOSIT", plunder: "PLUNDER", transfer: "TRANSFER"}
+  before_create :recalculates_balance
+
+  private
+
+  def recalculates_balance
+
+  end
 end

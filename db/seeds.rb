@@ -16,8 +16,22 @@ puts "Populando o banco de dados"
                  })
 end
 
-100000.times do
+accounts = Account.all
 
+5000.times do |i|
+  puts "Transação #{i}"
 
+  source = accounts.sample
+  destination = accounts.sample
 
+  if source != destination
+    Moviment.table_name = "moviment_#{source.number}"
+    Moviment.create({
+                        description: "Gerada Pela SEED",
+                        source: source.number,
+                        destination: destination.number,
+                        amount: i % 2 == 0 ? Faker::Number.decimal : Faker::Number.negative,
+                        observation: ''
+                    })
+  end
 end

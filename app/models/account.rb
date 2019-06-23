@@ -12,8 +12,7 @@ class Account < ApplicationRecord
         t.string "description"
         t.string "source"
         t.string "destination"
-        t.string "type"
-        t.decimal "amount", :precision => 4
+        t.decimal "amount", :precision => 10, :scale => 4
         t.string "observation"
         t.datetime "created_at", null: false
       end
