@@ -11,11 +11,7 @@ module Api::V1
     private
 
     def find_account
-      if params[:id].nil?
-        @account = Account.find_by_number!(params[:number])
-      else
-        @account = Account.find_by_id!(params[:id])
-      end
+      @account = Account.find_by_id!(params[:id])
     rescue ActiveRecord::RecordNotFound
       render json: {errors: 'Account does not exist.'}, status: :not_found
     end

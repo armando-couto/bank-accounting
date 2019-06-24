@@ -44,27 +44,17 @@ Exemplo de retorno de json:
       
 ### Consultando o Saldo da Conta
 
-Nesse método você pode consultar o saldo usando o **id** ou **number**. 
+Nesse método você pode consultar o saldo usando o **id**. 
 
 | URL | MÉTODO | RETORNO |
 | --- | ------ | ------- |
-| /api/v1/balance | POST | Retorno JSON |
+| /api/v1/balance/:id | GET | Retorno JSON |
 
 Exemplo com curl:
 ```sh
-curl -X POST \
-  http://localhost:3000/api/v1/balance \
-  -H 'Authorization: <TOKEN-GERADO-PELO-JWT>' \
-  -H 'Content-Type: application/json' \
-  -d '{"id": <ID-GERADO>}'
-```
-
-```sh
-curl -X POST \
-  http://localhost:3000/api/v1/balance \
-  -H 'Authorization: <TOKEN-GERADO-PELO-JWT>' \
-  -H 'Content-Type: application/json' \
-  -d '{"number": <NUMBER-CONTA-GERADO>}'
+curl -X GET \
+  http://localhost:3000/api/v1/balance/<ID-GERADO> \
+  -H 'Authorization: <TOKEN-GERADO-PELO-JWT>'
 ```
 
 Exemplo de retorno de json:
