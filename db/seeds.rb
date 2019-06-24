@@ -1,5 +1,23 @@
 puts "Populando o banco de dados"
 
+puts "Criando um cliente default"
+client = Client.new({
+                        name: "Armando Couto",
+                        cpf: Faker::CPF.numeric,
+                        email: "armando@empresa.com.br",
+                        password: "123456"
+                    })
+client.save
+
+Account.create({
+                   client: client,
+                   number: Faker::Bank.account_number,
+                   balance: 0.0000,
+                   limit: Faker::Number.decimal(4, 4),
+               })
+########################################################################
+
+puts "Criando 50 clientes random"
 50.times do
   client = Client.new({
                           name: Faker::Name.name,
@@ -16,6 +34,7 @@ puts "Populando o banco de dados"
                      limit: Faker::Number.decimal(4, 4),
                  })
 end
+########################################################################
 
 accounts = Account.all
 
