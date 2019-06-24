@@ -13,7 +13,7 @@ puts "Populando o banco de dados"
                      client: client,
                      number: Faker::Bank.account_number,
                      balance: 0.0000,
-                     limit: Faker::Number.decimal(5, 4),
+                     limit: Faker::Number.decimal(4, 4),
                  })
 end
 
