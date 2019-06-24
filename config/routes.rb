@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       post '/auth', to: 'authentication#login'
+      post '/balance', to: 'accounts#balance'
 
       resources :clients
     end

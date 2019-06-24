@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 
   def not_found
-    render json: { error: 'not_found' }
+    render json: {error: 'not_found'}
   end
 
   def authorize_request
@@ -11,9 +11,9 @@ class ApplicationController < ActionController::API
       @decoded = JsonWebToken.decode(header)
       @current_client = Client.find(@decoded[:client_id])
     rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
+      render json: {errors: e.message}, status: :unauthorized
     rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
+      render json: {errors: e.message}, status: :unauthorized
     end
   end
 end

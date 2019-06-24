@@ -1,46 +1,17 @@
 module Api::V1
   class ClientsController < ApplicationController
     before_action :authorize_request
-    before_action :find_client, except: %i[create index]
+    before_action :find_client, except: %i[index]
 
     # GET /clients
     def index
       @clients = Client.all
-
-      Moviment.table_name = "moviment_1564890332"
-      puts Moviment.count
-
-      Moviment.table_name = "moviment_9600295491"
-      puts Moviment.count
-
-      render json: @clients, status: :ok
+      render json: @clients.to_json(:include => :account), status: :ok
     end
 
     # GET /clients/{id}
     def show
-      render json: @client, status: :ok
-    end
-
-    # POST /clients
-    def create
-      @client = Client.new(client_params)
-      if @client.save
-        render json: @client, status: :created
-      else
-        render json: {errors: @client.errors.full_messages}, status: :unprocessable_entity
-      end
-    end
-
-    # PUT /clients/{id}
-    def update
-      unless @client.update(client_params)
-        render json: {errors: @client.errors.full_messages}, status: :unprocessable_entity
-      end
-    end
-
-    # DELETE /clients/{id}
-    def destroy
-      @client.destroy
+      render json: @client.to_json(:include => :account), status: :ok
     end
 
     private
@@ -49,10 +20,6 @@ module Api::V1
       @client = Client.find_by_id!(params[:id])
     rescue ActiveRecord::RecordNotFound
       render json: {errors: 'Client not found'}, status: :not_found
-    end
-
-    def client_params
-      params.permit(:name, :email, :password, :password_confirmation)
     end
   end
 end

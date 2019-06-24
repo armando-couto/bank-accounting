@@ -25,6 +25,14 @@ O JWT é um meio de transmitir informações seguras.
 | --- | ------ | ------- |
 | /api/v1/auth | POST | Retorno JSON |
 
+Exemplo com curl:
+```sh
+curl -X POST \
+  http://localhost:3000/api/v1/auth \
+  -H 'Content-Type: application/json' \
+  -d '{"email": "<EMAIL-GERADO>", "password": "123456"}'
+```
+
 Exemplo de retorno de json:
 ```json
 {
@@ -33,11 +41,35 @@ Exemplo de retorno de json:
     "name": "Carmelia Blanda"
 }
 ```
+      
+### Consultando o Saldo da Conta
 
-### Documantacao da API
+Nesse método você pode consultar o saldo usando o **id** ou **number**. 
 
-    curl -X POST \
-      http://localhost:3000/auth/login \
-      -H 'Content-Type: application/json' \
-      -d '{"email": "<EMAIL-GERADO>", "password": "123456"}'
+| URL | MÉTODO | RETORNO |
+| --- | ------ | ------- |
+| /api/v1/balance | POST | Retorno JSON |
 
+Exemplo com curl:
+```sh
+curl -X POST \
+  http://localhost:3000/api/v1/balance \
+  -H 'Authorization: <TOKEN-GERADO-PELO-JWT>' \
+  -H 'Content-Type: application/json' \
+  -d '{"id": <ID-GERADO>}'
+```
+
+```sh
+curl -X POST \
+  http://localhost:3000/api/v1/balance \
+  -H 'Authorization: <TOKEN-GERADO-PELO-JWT>' \
+  -H 'Content-Type: application/json' \
+  -d '{"number": <NUMBER-CONTA-GERADO>}'
+```
+
+Exemplo de retorno de json:
+```json
+{
+    "balance": "2205.9256"
+}
+```
