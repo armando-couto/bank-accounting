@@ -12,25 +12,37 @@ puts "Populando o banco de dados"
   Account.create({
                      client: client,
                      number: Faker::Bank.account_number,
-                     balance: Faker::Number.decimal,
+                     balance: 0.0000,
+                     limit: Faker::Number.decimal(5, 4),
                  })
 end
 
 accounts = Account.all
 
 5000.times do |i|
-  puts "Transação #{i}"
+  puts "Criando a transação #{i}."
 
-  source = accounts.sample
+  origin = accounts.sample
   destination = accounts.sample
 
-  if source != destination
-    Moviment.table_name = "moviment_#{source.number}"
+  if origin != destination
+    amount = Faker::Number.decimal(3, 4)
+
+    # Nesse caso ele tem uma Destino o dinheiro
+    Moviment.table_name = "moviment_#{origin.number}"
     Moviment.create({
                         description: "Gerada Pela SEED",
-                        source: source.number,
-                        destination: destination.number,
-                        amount: i % 2 == 0 ? Faker::Number.decimal : Faker::Number.negative,
+                        route: "DEBIT#{destination.number}",
+                        amount: amount.to_f * -1,
+                        observation: ''
+                    })
+
+    # Nesse caso ele tem uma Origem o dinheiro
+    Moviment.table_name = "moviment_#{destination.number}"
+    Moviment.create({
+                        description: "Gerada Pela SEED",
+                        route: "CREDIT#{origin.number}",
+                        amount: amount,
                         observation: ''
                     })
   end

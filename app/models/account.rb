@@ -10,8 +10,7 @@ class Account < ApplicationRecord
     ActiveRecord::Schema.define do
       create_table "moviment_" + number, force: :cascade do |t|
         t.string "description"
-        t.string "source"
-        t.string "destination"
+        t.string "route"
         t.decimal "amount", :precision => 10, :scale => 4
         t.string "observation"
         t.datetime "created_at", null: false
