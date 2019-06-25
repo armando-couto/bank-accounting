@@ -1,5 +1,5 @@
 class Moviment < ApplicationRecord
-  before_create :recalculates_balance
+  after_create :recalculates_balance
 
   private
 
