@@ -63,3 +63,56 @@ Exemplo de retorno de json:
     "balance": "2205.9256"
 }
 ```
+      
+### Transação entre Contas 
+
+Nesse método você pode realizar transferências entre contas com os parâmetros **origin_account_id**, **destination_account_id** e **amount**. 
+
+| URL | MÉTODO | RETORNO |
+| --- | ------ | ------- |
+| /api/v1/transference | POST | Retorno JSON |
+
+Exemplo com curl:
+```sh
+curl -X GET \
+  curl -X POST \
+    http://localhost:3000/api/v1/transference \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: <TOKEN-GERADO-PELO-JWT>'
+    -d '{"origin_account_id": "<ID-CONTA-ORIGEM>", "destination_account_id": "<ID-CONTA-DESTINO>", "amount": "<VALOR>"}'
+```
+
+Exemplo de retorno de json:
+```json
+{
+    "message": "Transfer completed successfully."
+}
+```
+
+Exemplo de retorno de erro com conta de origem não existente:
+```json
+{
+    "error": "Origin account not exist."
+}
+```
+
+Exemplo de retorno de erro com conta de destino não existente:
+```json
+{
+    "error": "Destination account not exist."
+}
+```
+
+Exemplo de retorno de erro com valor menor que 0:
+```json
+{
+    "error": "Amount must be greater than 0."
+}
+```
+
+Exemplo de retorno de erro com o limite inferior para transação:
+```json
+{
+    "error": "Account has not limit, limit disponible: <VALOR-QUE-VARIA>>."
+}
+```

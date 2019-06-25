@@ -12,24 +12,24 @@ module Api::V1
     def transference
       origin_account = Account.find_by_id(params[:origin_account_id])
       if origin_account.nil?
-        render json: {errors: 'Origin account not exist.'}, status: :not_found
+        render json: {error: 'Origin account not exist.'}, status: :not_found
         return
       end
 
       destination_account = Account.find_by_id(params[:destination_account_id])
       if destination_account.nil?
-        render json: {errors: 'Destination account not exist.'}, status: :not_found
+        render json: {error: 'Destination account not exist.'}, status: :not_found
         return
       end
 
       if params[:amount].nil? || params[:amount].to_f <= 0
-        render json: {errors: 'Amount must be greater than 0.'}, status: :not_found
+        render json: {error: 'Amount must be greater than 0.'}, status: :not_found
         return
       end
 
       amount = params[:amount].to_f * -1
       if origin_account.check_not_limit amount
-        render json: {errors: "Account has not limit, limit disponible: #{origin_account.balance}."}, status: :not_acceptable
+        render json: {error: "Account has not limit, limit disponible: #{origin_account.balance}."}, status: :not_acceptable
         return
       end
 
@@ -49,7 +49,7 @@ module Api::V1
     def find_account
       @account = Account.find_by_id!(params[:id])
     rescue ActiveRecord::RecordNotFound
-      render json: {errors: 'Account does not exist.'}, status: :not_found
+      render json: {error: 'Account does not exist.'}, status: :not_found
     end
   end
 end
