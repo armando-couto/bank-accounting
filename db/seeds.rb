@@ -9,22 +9,24 @@ client = Client.new({
                     })
 client.save
 
+BALANCE_DEFAULT = 10000.0000
+
 account = Account.create({
                              client: client,
                              number: Faker::Bank.account_number,
-                             balance: 10000.0000,
+                             balance: BALANCE_DEFAULT,
                          })
 Moviment.table_name = "moviment_#{account.number}"
 Moviment.create({
                     description: "DEPOSITO_DO_BANCO",
                     route: "00000000000",
-                    amount: 10000.0000,
+                    amount: BALANCE_DEFAULT,
                     observation: ''
                 })
 ########################################################################
 
 puts "Criando 50 clientes random"
-2.times do
+50.times do
   client = Client.new({
                           name: Faker::Name.name,
                           cpf: Faker::CPF.numeric,
@@ -36,20 +38,20 @@ puts "Criando 50 clientes random"
   account = Account.create({
                                client: client,
                                number: Faker::Bank.account_number,
-                               balance: 10000.0000,
+                               balance: BALANCE_DEFAULT,
                            })
 
   Moviment.table_name = "moviment_#{account.number}"
   Moviment.create({
                       description: "DEPOSITO_DO_BANCO",
                       route: "00000000000",
-                      amount: 10000.0000,
+                      amount: BALANCE_DEFAULT,
                       observation: ''
                   })
 end
 ########################################################################
 
-20.times do |i|
+5000.times do |i|
   puts "Criando a transação #{i}."
 
   accounts = Account.all # A lista tem que ficar aqui para sempre está atualizada

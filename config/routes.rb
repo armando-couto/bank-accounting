@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       post '/auth', to: 'authentication#login'
       get '/balance/:id', to: 'accounts#balance'
+      post '/transference', to: 'accounts#transference'
 
       resources :clients
     end

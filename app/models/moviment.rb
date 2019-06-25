@@ -2,6 +2,24 @@ class Moviment < ApplicationRecord
   before_save :calcule_balance
   after_save :recalculates_balance
 
+  def self.create_debit destination_account_number, amount
+    Moviment.create({
+                        description: "TRANSFERENCIA",
+                        route: destination_account_number,
+                        amount: amount,
+                        observation: ''
+                    })
+  end
+
+  def self.create_credit origin_account_number, amount
+    Moviment.create({
+                        description: "RECEBIDO",
+                        route: origin_account_number,
+                        amount: amount,
+                        observation: ''
+                    })
+  end
+
   private
 
   def calcule_balance
