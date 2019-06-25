@@ -9,15 +9,22 @@ client = Client.new({
                     })
 client.save
 
-Account.create({
-                   client: client,
-                   number: Faker::Bank.account_number,
-                   balance: Faker::Number.decimal(4, 4),
-               })
+account = Account.create({
+                             client: client,
+                             number: Faker::Bank.account_number,
+                             balance: 10000.0000,
+                         })
+Moviment.table_name = "moviment_#{account.number}"
+Moviment.create({
+                    description: "DEPOSITO_DO_BANCO",
+                    route: "00000000000",
+                    amount: 10000.0000,
+                    observation: ''
+                })
 ########################################################################
 
 puts "Criando 50 clientes random"
-50.times do
+2.times do
   client = Client.new({
                           name: Faker::Name.name,
                           cpf: Faker::CPF.numeric,
@@ -26,30 +33,26 @@ puts "Criando 50 clientes random"
                       })
   client.save
 
-  balance = Faker::Number.decimal(4, 4)
   account = Account.create({
                                client: client,
                                number: Faker::Bank.account_number,
-                               balance: balance,
+                               balance: 10000.0000,
                            })
 
-  # Creditando o dinheiro no DESTINO
   Moviment.table_name = "moviment_#{account.number}"
   Moviment.create({
-                      description: "Gerada Para Um Saldo Positivo",
-                      route: "CREDIT00000000000",
-                      amount: balance,
+                      description: "DEPOSITO_DO_BANCO",
+                      route: "00000000000",
+                      amount: 10000.0000,
                       observation: ''
                   })
-
 end
 ########################################################################
 
-accounts = Account.all
-
-5000.times do |i|
+20.times do |i|
   puts "Criando a transação #{i}."
 
+  accounts = Account.all # A lista tem que ficar aqui para sempre está atualizada
   origin = accounts.sample
   destination = accounts.sample
 
@@ -57,28 +60,22 @@ accounts = Account.all
     amount = Faker::Number.decimal(4, 4)
     amount_destination = amount.to_f * -1
 
-    if origin.check_limit amount_destination
+    # Retirando o dinheiro da ORIGEM
+    Moviment.table_name = "moviment_#{origin.number}"
+    Moviment.create({
+                        description: "TRANSFERENCIA",
+                        route: destination.number,
+                        amount: amount_destination,
+                        observation: ''
+                    })
 
-      # Retirando o dinheiro da ORIGEM
-      Moviment.table_name = "moviment_#{origin.number}"
-      Moviment.create({
-                          description: "Gerada Pela SEED",
-                          route: "DEBIT#{destination.number}",
-                          amount: amount_destination,
-                          observation: ''
-                      })
-
-      # Creditando o dinheiro no DESTINO
-      Moviment.table_name = "moviment_#{destination.number}"
-      Moviment.create({
-                          description: "Gerada Pela SEED",
-                          route: "CREDIT#{origin.number}",
-                          amount: amount,
-                          observation: ''
-                      })
-
-      origin.update({balance: Moviment.sum(:amount)})
-      destination.update({balance: Moviment.sum(:amount)})
-    end
+    # Creditando o dinheiro no DESTINO
+    Moviment.table_name = "moviment_#{destination.number}"
+    Moviment.create({
+                        description: "RECEBIDO",
+                        route: origin.number,
+                        amount: amount,
+                        observation: ''
+                    })
   end
 end

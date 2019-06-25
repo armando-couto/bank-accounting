@@ -3,10 +3,6 @@ class Account < ApplicationRecord
   before_create :create_moviment
   validates :number, presence: true, uniqueness: true
 
-  def check_limit amount
-    return true if (self.balance + amount) > 0
-  end
-
   private
 
   def create_moviment
