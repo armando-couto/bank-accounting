@@ -1,5 +1,7 @@
 # Bank Accounting
 
+[![Build Status](https://travis-ci.org/armando-couto/bank-accounting.svg?branch=master)](https://travis-ci.org/armando-couto/bank-accounting)
+
 ### Desafio
 
 Você deve criar um sistema que gerenciar contas bancárias de clientes, permitindo fazer transferências de um cliente para outro e expor o saldo atual da conta, sempre em reais.
