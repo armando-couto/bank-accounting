@@ -18,6 +18,9 @@ gem 'rake', '< 11.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# https://travis-ci.org/
+gem 'travis'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -27,7 +30,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'faker'
   gem 'cpf_faker'
-  gem 'travis'
 end
 
 group :development do
