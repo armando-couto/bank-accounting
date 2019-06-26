@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      post '/auth', to: 'authentication#login'
+      post '/auth', to: 'authentication#auth'
       get '/balance/:id', to: 'accounts#balance'
       post '/transference', to: 'accounts#transference'
 

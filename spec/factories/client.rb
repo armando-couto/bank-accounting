@@ -5,7 +5,6 @@ FactoryBot.define do
     email {"#{Faker::Name.unique.first_name}@empresa.com.br"}
     password {"123456"}
     cpf {Faker::CPF.numeric}
-    password {"123456"}
 
   end
 end

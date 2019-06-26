@@ -1,9 +1,9 @@
 module Api::V1
   class AuthenticationController < ApplicationController
-    before_action :authorize_request, except: :login
+    before_action :authorize_request, except: :auth
 
     # POST /auth
-    def login
+    def auth
       @client = Client.find_by_email(params[:email])
       if @client&.authenticate(params[:password])
         token = JsonWebToken.encode(client_id: @client.id)
