@@ -14,4 +14,4 @@ install:
 script:
   - yarn lint
   - yarn test
-  - bundle exec rake test
+  - rspec
