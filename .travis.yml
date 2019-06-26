@@ -5,6 +5,11 @@ before_install:
   - gem install rubygems-update && update_rubygems
   - yes | rvm @global do gem uninstall bundler --all
   - yes | rvm @global do gem install bundler -v 1.17.3 || true
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE DATABASE bank_accounting_test;" -U postgres
+  - psql -c "CREATE USER foo WITH PASSWORD 'postgres';" -U postgres
 cache:
   bundler: true
   yarn: true
