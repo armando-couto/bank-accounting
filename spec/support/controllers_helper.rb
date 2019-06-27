@@ -15,4 +15,15 @@ module ControllersHelper
       render json: {errors: e.message}, status: :unauthorized
     end
   end
+
+  def self.auth email, password
+    @client = Client.find_by_email(email)
+    if @client&.authenticate(password)
+      token = JsonWebToken.encode(client_id: @client.id)
+      time = Time.now + 24.hours.to_i
+      return {token: token, exp: time.strftime("%m-%d-%Y %H:%M"), name: @client.name}
+    else
+      return {error: 'unauthorized'}
+    end
+  end
 end
