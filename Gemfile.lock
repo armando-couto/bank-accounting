@@ -121,7 +121,7 @@ GEM
       equatable (~> 0.6)
       tty-color (~> 0.5)
     pg (1.1.4)
-    puma (3.12.1)
+    puma (3.12.4)
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
@@ -237,7 +237,7 @@ DEPENDENCIES
   jwt
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   rake (< 11.0)
   rspec-rails (~> 3.6)
